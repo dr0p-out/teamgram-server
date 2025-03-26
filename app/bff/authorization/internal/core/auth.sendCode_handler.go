@@ -350,6 +350,8 @@ func (c *AuthorizationCore) authSendCode(authKeyId, sessionId int64, request *mt
 				threading2.WrapperGoFunc(c.ctx, nil, func(ctx context.Context) {
 					c.pushSignInMessage(ctx, user.Id(), codeData2.PhoneCode)
 				})
+			} else if c.svcCtx.AuthLogic.VerifyCodeInterface.IsTestEnvironment(c.ctx) {
+				codeData2.PhoneCode = "12345"
 			}
 
 			if needSendSms {

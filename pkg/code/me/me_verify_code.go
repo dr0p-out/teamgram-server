@@ -76,3 +76,7 @@ func (m *meVerifyCode) VerifySmsCode(ctx context.Context, codeHash, code, extraD
 	// ...
 	return nil
 }
+
+func (m *meVerifyCode) IsTestEnvironment(ctx context.Context) bool {
+	return false
+}
